@@ -1,24 +1,17 @@
-N = -1
-
-
-def printList(l):
-    res.append(l)
-
-def select(l, s):
-    if len(l) == 6:
-        printList(l)
-    else:
-        for i in range(s - 1, len(l) - 8, -1):
-            select(l[:i] + l[i + 1:], i)
+def select(res, idx):
+    if len(res) == 6:
+        for i in res:
+            print(i, end = ' ')
+        print()
+    elif idx < len(S):
+        select(res + [S[idx]], idx + 1)
+        select(res, idx + 1)
     
-while N != 0:
-    res = []
+while True:
     S = list(map(int, input().split()))
     N = S[0]
-    select(S[1:], len(S) - 1)
-    res.sort()
-    for i in range(0, len(res)) :
-        for j in range(0, 6) :
-            print(res[i][j], end = " ")
-        print()
+    if N == 0:
+        break
+    S = S[1:]
+    select([], 0)
     print()
