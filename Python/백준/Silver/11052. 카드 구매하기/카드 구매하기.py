@@ -1,26 +1,13 @@
 import sys
-
-sys.setrecursionlimit(10 ** 9)
+input = sys.stdin.readline
 
 N = int(input())
+P = [0] + list(map(int, input().split()))
+dp = [0] * (N + 1)
 
-P = list(map(int, input().split()))
-P = [0] + P
-L = [0 for _ in range(0, N + 1)]
+for i in range(1, N + 1):
+    for k in range(1, i + 1):
+        if dp[i] < dp[i-k] + P[k]:
+            dp[i] = dp[i-k] + P[k]
 
-L[1] = P[1]
-def f(n):
-    if n == 0:
-        return 0
-    if L[n] != 0: # 있으면
-        return L[n]
-    
-    maxRes = P[n]
-    for i in range(1, n):
-        if maxRes < f(i) * (n // i) + f(n % i):
-            maxRes = f(i) * (n // i) + f(n % i)
-
-    L[n] = maxRes
-    return L[n]
-    
-print(f(N))
+print(dp[N])
