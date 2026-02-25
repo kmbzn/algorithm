@@ -1,5 +1,5 @@
 import sys
-S = list(sys.stdin.readline().rstrip())
+S = sys.stdin.readline().strip()
 
 tmp = ""
 tag = False
