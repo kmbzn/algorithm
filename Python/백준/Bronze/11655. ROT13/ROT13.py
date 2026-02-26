@@ -1,4 +1,6 @@
-S = input()
+import sys
+
+S = sys.stdin.readline().strip('\n')
 
 for i in S:
     if 'A' <= i <= 'Z':
