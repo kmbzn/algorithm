@@ -18,15 +18,15 @@ s, e = map(int, INPUT[M].split())
 
 visited = [float('inf')] * (N + 1)
 
-Q = deque([s])
+Q = [(0, s)]
 visited[s] = 0
 
 while Q:
-    p = Q.popleft()
+    to, p = heapq.heappop(Q)
     for j in D[p]:
-        if visited[j[1]] > visited[p] + j[0]:
-            visited[j[1]] = visited[p] + j[0]
+        if visited[j[1]] > to + j[0]:
+            visited[j[1]] = to + j[0]
             if j[1] != e:
-                Q.append(j[1])
+                heapq.heappush(Q, (to + j[0], j[1]))
 
 print(visited[e])
